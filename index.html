@@ -11,6 +11,7 @@
   <!-- TITLE SCREEN -->
   <div id="title-screen">
     <div class="title-grid"></div>
+    <div class="title-horizon"></div>
     <div class="title-content">
       <p class="title-eyebrow">ILIATANIA &mdash; IMPERIAL CRISIS OFFICE &mdash; CLASSIFIED</p>
       <div class="title-diamond">&#9670;</div>
@@ -25,10 +26,19 @@
         You are the Imperial Crisis Strategist. You rose without noble blood, and the council watches you
         for weakness. Every decision will cost something. Every silence will cost more.
       </p>
+      <div class="title-objective">
+        <div class="title-obj-label">Your Strategic Objective</div>
+        <div class="title-obj-row"><span class="grapes-badge gb-g">G</span>Defend Veyra's harbor and coastal supply routes from Marenic seizure</div>
+        <div class="title-obj-row"><span class="grapes-badge gb-r">R</span>Navigate religious tensions without triggering civil collapse</div>
+        <div class="title-obj-row"><span class="grapes-badge gb-a">A</span>Manage the medical crisis with Iliatania's doctor corps</div>
+        <div class="title-obj-row"><span class="grapes-badge gb-p">P</span>Hold the Imperial Council and colonial system together</div>
+        <div class="title-obj-row"><span class="grapes-badge gb-e">E</span>Preserve the diversified imperial economy under war strain</div>
+        <div class="title-obj-row"><span class="grapes-badge gb-s">S</span>Maintain public trust across all classes and colonies</div>
+      </div>
       <button id="start-btn" class="btn-gold btn-lg">
         <span>&#9670;</span> ASSUME COMMAND
       </button>
-      <p class="title-note">7 scenes &bull; 10 decisions &bull; 6 possible endings</p>
+      <p class="title-note">7 scenes &bull; 5 choices each &bull; 6 possible endings</p>
     </div>
   </div>
 
@@ -51,7 +61,7 @@
     <div class="game-body">
       <!-- STATS SIDEBAR -->
       <aside class="stats-sidebar">
-        <div class="stats-heading">IMPERIAL STATUS</div>
+        <div class="stats-heading">IMPERIAL STATUS <span style="opacity:0.5;font-weight:400;letter-spacing:0.08em">— GRAPES</span></div>
         <div id="stats-list"></div>
         <div class="stats-legend">
           <div class="legend-row"><span class="swatch swatch-green"></span>Favorable</div>
@@ -63,12 +73,28 @@
       <!-- SCENE AREA -->
       <main class="scene-area">
         <div id="scene-card" class="scene-card">
+          <div id="scene-art" class="scene-art-panel"></div>
           <div class="scene-head-row">
             <span id="scene-act" class="scene-act">ACT I</span>
             <span id="scene-prog" class="scene-prog">1 / 7</span>
           </div>
           <h2 id="scene-title" class="scene-title"></h2>
           <div id="scene-body" class="scene-body"></div>
+
+          <!-- Advisor consultation -->
+          <div id="advisor-section" class="advisor-section hidden">
+            <div class="advisor-heading">
+              <span class="advisor-heading-label">&#8853; Consult Your Advisors</span>
+              <span class="advisor-heading-sub">Click an advisor to hear their assessment</span>
+            </div>
+            <div id="advisor-row" class="advisor-row"></div>
+          </div>
+
+          <!-- Lore toggle -->
+          <div id="lore-section" class="lore-section hidden">
+            <button class="lore-toggle" id="lore-toggle" onclick="toggleLore()">&#8853; Imperial Context</button>
+            <div class="lore-content hidden" id="lore-content"></div>
+          </div>
 
           <!-- Consequence (revealed after choice) -->
           <div id="consequence" class="consequence hidden">
