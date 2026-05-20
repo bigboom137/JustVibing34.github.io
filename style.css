@@ -974,3 +974,456 @@ html, body {
     rgba(180,110,30,0.045) 52px, transparent 54px
   );
 }
+
+/* =============================================
+   GRAPES BADGES & SIDEBAR GROUPING
+   ============================================= */
+
+.grapes-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px; height: 16px;
+  font-size: 9px;
+  font-weight: 800;
+  border-radius: 2px;
+  flex-shrink: 0;
+  letter-spacing: 0;
+}
+.gb-g { background: rgba(30,100,165,0.22);  color: #4a9fd4; border: 1px solid rgba(74,159,212,0.3); }
+.gb-r { background: rgba(140,50,165,0.18);  color: #b470d4; border: 1px solid rgba(180,112,212,0.3); }
+.gb-a { background: rgba(50,140,90,0.18);   color: #4aaa70; border: 1px solid rgba(74,170,112,0.3); }
+.gb-p { background: rgba(180,140,30,0.18);  color: #c9a040; border: 1px solid rgba(201,160,64,0.3); }
+.gb-e { background: rgba(160,110,30,0.18);  color: #c47828; border: 1px solid rgba(196,120,40,0.3); }
+.gb-s { background: rgba(200,80,60,0.16);   color: #c45848; border: 1px solid rgba(196,88,72,0.3); }
+
+.stat-group-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+.stat-group-header:first-child { margin-top: 0; }
+
+.stat-group-name {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+@media (max-width: 800px) {
+  .stat-group-header { grid-column: 1 / -1; margin-top: 6px; }
+}
+
+/* =============================================
+   TITLE SCREEN — OBJECTIVE BOX
+   ============================================= */
+
+.title-objective {
+  background: rgba(201, 162, 39, 0.04);
+  border: 1px solid var(--border);
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.title-obj-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 10px;
+}
+
+.title-obj-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-mute);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.title-obj-row:last-child { margin-bottom: 0; }
+
+/* Title horizon vignette */
+.title-horizon {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 18vh;
+  background: linear-gradient(0deg, rgba(6,9,20,0.9) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* =============================================
+   SCENE ART PANEL
+   ============================================= */
+
+.scene-art-panel {
+  position: relative;
+  width: calc(100% + 80px);
+  margin: -38px -40px 28px;
+  height: 172px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background: #04080e;
+}
+.scene-art-panel:empty { display: none; }
+
+@media (max-width: 800px) {
+  .scene-art-panel {
+    width: calc(100% + 40px);
+    margin: -22px -20px 20px;
+    height: 130px;
+  }
+}
+
+/* =============================================
+   LORE TOGGLE
+   ============================================= */
+
+.lore-section { margin-bottom: 20px; }
+
+.lore-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-mute);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: all var(--trans);
+  border-radius: var(--radius);
+  width: 100%;
+  text-align: left;
+}
+.lore-toggle:hover { border-color: var(--gold-dim); color: var(--gold-dim); }
+.lore-toggle.open  { border-color: var(--gold-dim); color: var(--gold-dim); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+
+.lore-content {
+  background: var(--bg1);
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 14px 16px;
+  animation: fadeUp 0.22s ease-out;
+}
+.lore-content .lore-item {
+  display: flex;
+  gap: 9px;
+  font-size: 12px;
+  color: var(--text-mute);
+  line-height: 1.68;
+  margin-bottom: 8px;
+  align-items: flex-start;
+}
+.lore-content .lore-item:last-child { margin-bottom: 0; }
+.lore-content .lore-badge { flex-shrink: 0; margin-top: 1px; }
+
+/* =============================================
+   ENHANCED VISUALS
+   ============================================= */
+
+/* Scene card depth */
+.scene-card {
+  box-shadow: 0 4px 32px rgba(0,0,0,0.5), 0 0 0 1px var(--border);
+  overflow: visible;
+}
+
+/* Chosen choice — left accent bar */
+.choice-btn.chosen {
+  border-left-width: 3px;
+  border-left-color: var(--gold);
+}
+
+/* Stat bars — slightly taller */
+.bar-track { height: 6px; }
+
+/* Consequence — left accent */
+.consequence { border-left: 3px solid var(--gold-dim); }
+
+/* Gold button glow */
+.btn-gold:hover {
+  box-shadow: 0 0 20px rgba(201, 162, 39, 0.22);
+}
+
+/* Enhanced ending */
+.ending-stats-box { border-left: 3px solid var(--gold-dim); }
+
+/* Stat flash animation */
+@keyframes stat-flash {
+  0%, 100% { background: transparent; }
+  50%       { background: rgba(201,162,39,0.08); }
+}
+.stat-item.flashing { animation: stat-flash 0.55s ease-out; border-radius: 2px; }
+
+/* Title screen ship silhouettes */
+.title-ships {
+  position: absolute;
+  bottom: 12vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+/* =============================================
+   ADVISOR CONSULTATION SYSTEM
+   ============================================= */
+
+.advisor-section {
+  margin-bottom: 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.advisor-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 14px;
+  background: var(--bg1);
+  border-bottom: 1px solid var(--border);
+}
+
+.advisor-heading-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+
+.advisor-heading-sub {
+  font-size: 10px;
+  color: var(--text-mute);
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.advisor-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.advisor-card {
+  padding: 14px 12px;
+  border-right: 1px solid var(--border);
+  cursor: pointer;
+  transition: background var(--trans);
+  position: relative;
+}
+.advisor-card:last-child { border-right: none; }
+.advisor-card:hover { background: rgba(201,162,39,0.04); }
+.advisor-card.consulted { background: rgba(201,162,39,0.05); cursor: default; }
+
+.advisor-portrait {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--bg0);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  margin-bottom: 8px;
+  transition: border-color var(--trans), box-shadow var(--trans);
+  pointer-events: none;
+}
+.advisor-card.consulted .advisor-portrait {
+  border-color: var(--gold-dim);
+  box-shadow: 0 0 8px rgba(201,162,39,0.14);
+}
+
+.advisor-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+  font-family: var(--font-serif);
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+.advisor-role {
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  margin-bottom: 9px;
+  pointer-events: none;
+}
+
+.advisor-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  pointer-events: none;
+}
+
+.advisor-consult-btn {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  border: 1px solid rgba(201,162,39,0.25);
+  background: transparent;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all var(--trans);
+  font-family: var(--font-sans);
+}
+.advisor-consult-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201,162,39,0.06);
+}
+.advisor-card.consulted .advisor-consult-btn { display: none; }
+
+.advisor-dialogue {
+  display: none;
+  font-size: 11.5px;
+  color: var(--text-mute);
+  line-height: 1.66;
+  font-style: italic;
+  margin-top: 9px;
+  padding-top: 9px;
+  border-top: 1px solid var(--border);
+  animation: fadeUp 0.25s ease-out;
+  pointer-events: none;
+}
+.advisor-card.consulted .advisor-dialogue { display: block; }
+
+@media (max-width: 800px) {
+  .advisor-row { grid-template-columns: 1fr; }
+  .advisor-card { border-right: none; border-bottom: 1px solid var(--border); }
+  .advisor-card:last-child { border-bottom: none; }
+}
+
+/* =============================================
+   CUTSCENE — ENHANCED EFFECTS
+   ============================================= */
+
+/* Smooth parallax transform */
+#cs-art {
+  transition: transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+#cs-art.cs-fading { transition: opacity 0.35s ease; }
+
+/* Panel entrance — brightness reveal, no transform conflict */
+@keyframes cs-panel-appear {
+  from { filter: brightness(0.3) saturate(0.4); opacity: 0; }
+  to   { filter: brightness(1) saturate(1); opacity: 1; }
+}
+#cs-art.cs-entering {
+  animation: cs-panel-appear 0.92s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Ship gentle drift in naval scenes */
+@keyframes ship-drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25%  { transform: translate(-2px, 2px) rotate(0.28deg); }
+  75%  { transform: translate(2px, 0.5px) rotate(-0.22deg); }
+}
+
+/* Rising embers for fire/ruin scenes */
+@keyframes ember-float {
+  0%   { transform: translateY(0) translateX(0); opacity: 0.85; }
+  70%  { opacity: 0.5; }
+  100% { transform: translateY(-90px) translateX(var(--x, 12px)); opacity: 0; }
+}
+.cs-ember {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f0a020 0%, #c05010 55%, transparent 80%);
+  box-shadow: 0 0 5px 2px rgba(240,130,20,0.4);
+  animation: ember-float var(--dur, 2s) ease-out var(--delay, 0s) infinite;
+  pointer-events: none;
+  z-index: 15;
+}
+
+/* Atmospheric fog layer */
+@keyframes fog-drift {
+  0%, 100% { transform: translateX(-10px); opacity: 0.28; }
+  50%       { transform: translateX(14px);  opacity: 0.44; }
+}
+@keyframes fog-drift-2 {
+  0%, 100% { transform: translateX(10px);  opacity: 0.16; }
+  50%       { transform: translateX(-16px); opacity: 0.30; }
+}
+.cs-fog-layer {
+  position: absolute;
+  bottom: 22%;
+  left: -12%;
+  width: 124%;
+  height: 20%;
+  background: linear-gradient(0deg, rgba(110,145,200,0.1) 0%, rgba(85,115,175,0.07) 55%, transparent 100%);
+  border-radius: 50%;
+  animation: fog-drift 11s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 12;
+}
+.cs-fog-layer-2 {
+  bottom: 32%;
+  opacity: 0.75;
+  animation: fog-drift-2 15s ease-in-out infinite;
+}
+
+/* Ambient warm glow pulse for indoor torch scenes */
+@keyframes ambient-glow {
+  0%, 100% { opacity: 0.055; }
+  40%       { opacity: 0.10; }
+  70%       { opacity: 0.038; }
+}
+.cs-ambient-pulse {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 65% 55% at 50% 42%, rgba(220,148,20,0.1) 0%, transparent 62%);
+  animation: ambient-glow 3.8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Improved lightning flash timing */
+@keyframes cs-lightning {
+  0%, 87%, 93%, 100% { opacity: 0; }
+  89%  { opacity: 0.55; background: rgba(190,190,255,0.07); }
+  91%  { opacity: 0; }
+  92%  { opacity: 0.35; }
+}
+.cs-lightning-overlay { animation: cs-lightning 4.8s ease-in-out infinite; }
+
+/* Wave animation upgrade */
+@keyframes cs-wave-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.cs-wave-band { animation: cs-wave-scroll 14s linear infinite; }
+.cs-wave-band-fast { animation: cs-wave-scroll 7s linear infinite; }
+
+/* Character animations */
+@keyframes cs-breathe {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-3px); }
+}
+@keyframes cs-cape-blow {
+  0%, 100% { transform: skewX(0deg) rotate(0deg); }
+  40%       { transform: skewX(4deg) rotate(0.8deg); }
+  70%       { transform: skewX(-1.5deg) rotate(-0.3deg); }
+}
+@keyframes cs-hair-fly {
+  0%, 100% { transform-origin: left top; transform: rotate(0deg) skewX(0deg); }
+  50%       { transform: rotate(-3deg) skewX(-5deg); }
+}
