@@ -1636,13 +1636,30 @@ function showScene(idx) {
   });
 }
 
+
+function toRoman(num) {
+  const romans = [
+    ['M', 1000], ['CM', 900], ['D', 500], ['CD', 400],
+    ['C', 100], ['XC', 90], ['L', 50], ['XL', 40],
+    ['X', 10], ['IX', 9], ['V', 5], ['IV', 4], ['I', 1]
+  ];
+  let result = '';
+  for (const [roman, value] of romans) {
+    while (num >= value) {
+      result += roman;
+      num -= value;
+    }
+  }
+  return result;
+}
+
 function showCutscene(scene, cb) {
   const ov = document.getElementById('cutscene-ov');
   document.getElementById('cso-loc').textContent = scene.location || '';
   document.getElementById('cso-ttl').textContent = scene.title || '';
   const sceneIdx = gameState.currentScene;
   const total = gameState.currentChar.scenes.length;
-  document.getElementById('cso-num').textContent = `${scene.label || ('Scene ' + (sceneIdx + 1))} of ${total}`;
+  document.getElementById('cso-num').textContent = `${scene.label || ('Scene ' + toRoman(sceneIdx + 1))} of ${toRoman(total)}`;
   ov.classList.add('cso-on');
   setTimeout(() => {
     ov.classList.remove('cso-on');
@@ -1655,7 +1672,7 @@ function renderScene(scene, idx) {
   const total = char.scenes.length;
 
   // Progress
-  document.getElementById('gh-prog').textContent = `Scene ${idx + 1} / ${total}`;
+  document.getElementById('gh-prog').textContent = `Scene ${toRoman(idx + 1)} / ${toRoman(total)}`;
 
   // Art background
   const artEl = document.getElementById('scene-art');
