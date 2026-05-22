@@ -3,149 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The War of the Black Tide — Iliatania Crisis Simulator</title>
+  <title>Voices of Iliatania</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- TITLE SCREEN -->
-  <div id="title-screen">
-    <div class="title-grid"></div>
-    <div class="title-horizon"></div>
+  <div id="title-screen" class="screen active">
+    <div class="title-bg">
+      <div class="tbg-sky"></div>
+      <div class="tbg-clouds"></div>
+      <div class="tbg-ocean"></div>
+      <div class="tbg-ships"></div>
+      <div class="tbg-city"></div>
+      <div class="tbg-fog"></div>
+      <div class="tbg-vignette"></div>
+    </div>
     <div class="title-content">
-      <p class="title-eyebrow">ILIATANIA &mdash; IMPERIAL CRISIS OFFICE &mdash; CLASSIFIED</p>
-      <div class="title-diamond">&#9670;</div>
-      <h1 class="game-title">THE WAR OF THE<br><em>BLACK TIDE</em></h1>
-      <p class="game-subtitle">An Imperial Crisis Simulator</p>
-      <div class="hr"></div>
-      <p class="title-lore">
-        The Black Tide Storm has leveled Veyra. The colony cannot pay tribute. Disease spreads unchecked.
-        On the horizon, thirty Marenic warships hold position — waiting for Iliatania to falter.
-      </p>
-      <p class="title-lore">
-        You are the Imperial Crisis Strategist. You rose without noble blood, and the council watches you
-        for weakness. Every decision will cost something. Every silence will cost more.
-      </p>
-      <div class="title-objective">
-        <div class="title-obj-label">Your Strategic Objective</div>
-        <div class="title-obj-row"><span class="grapes-badge gb-g">G</span>Defend Veyra's harbor and coastal supply routes from Marenic seizure</div>
-        <div class="title-obj-row"><span class="grapes-badge gb-r">R</span>Navigate religious tensions without triggering civil collapse</div>
-        <div class="title-obj-row"><span class="grapes-badge gb-a">A</span>Manage the medical crisis with Iliatania's doctor corps</div>
-        <div class="title-obj-row"><span class="grapes-badge gb-p">P</span>Hold the Imperial Council and colonial system together</div>
-        <div class="title-obj-row"><span class="grapes-badge gb-e">E</span>Preserve the diversified imperial economy under war strain</div>
-        <div class="title-obj-row"><span class="grapes-badge gb-s">S</span>Maintain public trust across all classes and colonies</div>
+      <p class="title-eyebrow">ILIATANIA &mdash; AN EGALITARIAN SOCIETY</p>
+      <div class="title-gem">&#9670;</div>
+      <h1 class="title-main">VOICES OF<br><em>ILIATANIA</em></h1>
+      <p class="title-tagline">Four lives. One society. Every choice shapes your rank.</p>
+      <div class="title-hr"><span></span><span class="thr-gem">&#9670;</span><span></span></div>
+      <p class="title-lore">Iliatania is built on a single promise: that rank, respect, and opportunity belong to those who earn them &mdash; not those who inherit them. Four citizens are climbing. Choices of fairness, honesty, and service determine how far they rise.</p>
+      <button id="start-btn" class="btn-primary btn-xl">&#9670;&nbsp; BEGIN</button>
+      <p class="title-note">4 characters &bull; 28 scenes &bull; Rank-up system &bull; Multiple endings</p>
+    </div>
+  </div>
+
+  <!-- CHARACTER SELECT -->
+  <div id="char-screen" class="screen hidden">
+    <div class="char-bg"></div>
+    <div class="char-content">
+      <div class="char-header">
+        <p class="char-eyebrow">CHOOSE YOUR VOICE</p>
+        <h2 class="char-title">Who Do You Play As?</h2>
+        <p class="char-sub">Each character is climbing Iliatania's merit-based rank system from a different starting point. Their choices in exams, hospitals, trade routes, and assemblies determine how far they rise.</p>
       </div>
-      <button id="start-btn" class="btn-gold btn-lg">
-        <span>&#9670;</span> ASSUME COMMAND
-      </button>
-      <p class="title-note">7 scenes &bull; 5 choices each &bull; 6 possible endings</p>
+      <div class="char-grid" id="char-grid"></div>
+      <div class="council-unlock hidden" id="council-unlock">
+        <p class="council-unlock-note">All four voices recorded &mdash; the final scene is now unlocked.</p>
+        <button class="btn-primary btn-xl" id="council-btn">&#9670;&nbsp; COUNCIL OF VOICES</button>
+      </div>
     </div>
   </div>
 
   <!-- GAME SCREEN -->
-  <div id="game-screen" class="hidden">
+  <div id="game-screen" class="screen hidden">
     <header class="game-header">
-      <div class="hdr-left">
-        <span class="hdr-gem">&#9670;</span>
-        <div class="hdr-titles">
-          <span class="hdr-main">THE WAR OF THE BLACK TIDE</span>
-          <span class="hdr-sub">Iliatania Imperial Crisis Office</span>
-        </div>
+      <button class="btn-back" id="back-btn">&#8592; Characters</button>
+      <div class="gh-center">
+        <span class="gh-charname" id="gh-charname"></span>
+        <span class="gh-prog" id="gh-prog"></span>
       </div>
-      <div class="hdr-right">
-        <span class="hdr-role">Imperial Crisis Strategist</span>
-        <span class="hdr-loc">Capital: Aurelion</span>
-      </div>
+      <div class="gh-right" id="gh-right"></div>
     </header>
-
     <div class="game-body">
-      <!-- STATS SIDEBAR -->
-      <aside class="stats-sidebar">
-        <div class="stats-heading">IMPERIAL STATUS <span style="opacity:0.5;font-weight:400;letter-spacing:0.08em">— GRAPES</span></div>
-        <div id="stats-list"></div>
-        <div class="stats-legend">
-          <div class="legend-row"><span class="swatch swatch-green"></span>Favorable</div>
-          <div class="legend-row"><span class="swatch swatch-amber"></span>Strained</div>
-          <div class="legend-row"><span class="swatch swatch-red"></span>Critical</div>
-        </div>
-      </aside>
 
-      <!-- SCENE AREA -->
-      <main class="scene-area">
-        <div id="scene-card" class="scene-card">
-          <div id="scene-art" class="scene-art-panel"></div>
-          <div class="scene-head-row">
-            <span id="scene-act" class="scene-act">ACT I</span>
-            <span id="scene-prog" class="scene-prog">1 / 7</span>
-          </div>
-          <h2 id="scene-title" class="scene-title"></h2>
-          <div id="scene-body" class="scene-body"></div>
+      <!-- Full-screen scene art (background) -->
+      <div class="scene-art-panel" id="scene-art"></div>
 
-          <!-- Advisor consultation -->
-          <div id="advisor-section" class="advisor-section hidden">
-            <div class="advisor-heading">
-              <span class="advisor-heading-label">&#8853; Consult Your Advisors</span>
-              <span class="advisor-heading-sub">Click an advisor to hear their assessment</span>
-            </div>
-            <div id="advisor-row" class="advisor-row"></div>
-          </div>
+      <!-- Player character silhouette — visible from behind in the scene -->
+      <div class="player-silhouette" id="player-silhouette"></div>
 
-          <!-- Lore toggle -->
-          <div id="lore-section" class="lore-section hidden">
-            <button class="lore-toggle" id="lore-toggle" onclick="toggleLore()">&#8853; Imperial Context</button>
-            <div class="lore-content hidden" id="lore-content"></div>
-          </div>
-
-          <!-- Consequence (revealed after choice) -->
-          <div id="consequence" class="consequence hidden">
-            <div class="consequence-label">IMPERIAL DISPATCH</div>
-            <p id="consequence-text" class="consequence-text"></p>
-            <div id="consequence-chips" class="consequence-chips"></div>
-          </div>
-
-          <!-- Choices -->
-          <div id="choices" class="choices"></div>
-
-          <!-- Continue -->
-          <button id="continue-btn" class="btn-continue hidden">
-            Proceed to Next Scene &#8594;
-          </button>
-        </div>
-      </main>
-    </div>
-  </div>
-
-  <!-- ENDING SCREEN -->
-  <div id="ending-screen" class="hidden">
-    <div class="ending-wrap">
-      <p class="ending-eyebrow">IMPERIAL ARCHIVE &mdash; SEALED RECORD</p>
-      <div id="ending-symbol" class="ending-symbol">&#9670;</div>
-      <h1 id="ending-title" class="ending-title"></h1>
-      <p id="ending-subtitle" class="ending-subtitle"></p>
-      <div class="hr"></div>
-      <div id="ending-body" class="ending-body"></div>
-      <div class="ending-stats-box">
-        <div class="ending-stats-label">FINAL IMPERIAL STATUS</div>
-        <div id="ending-stat-grid" class="ending-stat-grid"></div>
+      <!-- NPC floating speech bubble (top-left of art) -->
+      <div class="npc-bubble" id="npc-bubble">
+        <div class="npc-speaker" id="npc-speaker"></div>
+        <p class="npc-line" id="npc-line"></p>
       </div>
-      <button class="btn-gold btn-lg" onclick="restartGame()">
-        <span>&#9670;</span> RESTART CRISIS
-      </button>
+
+      <!-- Civic status HUD (top-right of art) -->
+      <div class="stats-hud" id="stats-hud">
+        <div class="shud-label">CIVIC STATUS</div>
+        <div class="rank-display" id="rank-display"></div>
+        <div id="ss-bars"></div>
+      </div>
+
+      <!-- Cinematic cutscene overlay (full-screen, z-top) -->
+      <div class="cutscene-ov" id="cutscene-ov">
+        <div class="cso-body">
+          <p class="cso-eyebrow" id="cso-loc"></p>
+          <div class="cso-gem">&#9670;</div>
+          <h2 class="cso-title" id="cso-ttl"></h2>
+          <p class="cso-num" id="cso-num"></p>
+        </div>
+      </div>
+
+      <!-- Dialogue panel — bottom overlay, scrollable -->
+      <div class="dialogue-panel" id="scene-card">
+        <div class="dp-head">
+          <span class="sc-location" id="sc-location"></span>
+          <span class="sc-label" id="sc-label"></span>
+        </div>
+        <h2 class="sc-title" id="sc-title"></h2>
+        <div class="sc-body" id="sc-body"></div>
+        <!-- NPC inline quote (inside dialogue panel) -->
+        <div class="dp-npc hidden" id="dp-npc">
+          <span class="dp-npc-name" id="dp-npc-name"></span>
+          <p class="dp-npc-text" id="dp-npc-text"></p>
+        </div>
+        <!-- Inner voice — character's private thought before choices -->
+        <div class="inner-voice hidden" id="inner-voice"></div>
+        <!-- Player choices -->
+        <div class="choices" id="choices"></div>
+        <!-- Consequence (shown after choice) -->
+        <div class="consequence hidden" id="consequence">
+          <span class="consequence-label">&#9670; WHAT HAPPENS</span>
+          <p class="consequence-text" id="consequence-text"></p>
+          <div class="consequence-chips" id="consequence-chips"></div>
+        </div>
+        <button class="btn-continue hidden" id="continue-btn">Continue &#8594;</button>
+        <!-- Kept for JS compatibility -->
+        <div id="ss-char-info" style="display:none"></div>
+        <div id="ss-grapes" style="display:none"></div>
+      </div>
+
     </div>
   </div>
 
-  <!-- CUTSCENE SCREEN -->
-  <div id="cutscene" class="hidden">
-    <div class="cs-bar cs-bar-top"></div>
-    <div class="cs-bar cs-bar-bottom"></div>
-    <div id="cs-art" class="cs-art"></div>
-    <div class="cs-text-box">
-      <span class="cs-location" id="cs-location"></span>
-      <p class="cs-narration" id="cs-narration"></p>
+  <!-- CHARACTER ENDING -->
+  <div id="char-end-screen" class="screen hidden">
+    <div class="char-end-wrap">
+      <p class="char-end-eyebrow" id="ce-eyebrow"></p>
+      <div class="char-end-gem">&#9670;</div>
+      <h2 class="char-end-title" id="ce-title"></h2>
+      <p class="char-end-body" id="ce-body"></p>
+      <button class="btn-primary" id="ce-continue">Return to Characters &#8594;</button>
     </div>
-    <span class="cs-hint" id="cs-hint">Click to continue</span>
-    <button class="cs-skip-btn" id="cs-skip-btn">SKIP &#215;</button>
-    <div class="cs-dots" id="cs-dots"></div>
+  </div>
+
+  <!-- FINAL ENDING -->
+  <div id="ending-screen" class="screen hidden">
+    <div class="ending-bg-art" id="ending-bg-art"></div>
+    <div class="ending-wrap">
+      <p class="ending-eyebrow">CIVIC ARCHIVE &mdash; SEALED RECORD</p>
+      <div class="ending-gem" id="ending-gem">&#9670;</div>
+      <h1 class="ending-title" id="ending-title"></h1>
+      <p class="ending-subtitle" id="ending-subtitle"></p>
+      <div class="ending-hr"><span></span><span class="thr-gem">&#9670;</span><span></span></div>
+      <div class="ending-body" id="ending-body"></div>
+      <div class="ending-voices-box" id="ending-voices"></div>
+      <div class="ending-final-stats" id="ending-final-stats"></div>
+      <div class="ending-btns">
+        <button class="btn-primary" id="ending-replay-btn">&#9670; Play Again</button>
+        <button class="btn-secondary" id="ending-restart-btn">&#8635; Full Restart</button>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
